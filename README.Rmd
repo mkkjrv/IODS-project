@@ -1,0 +1,9 @@
+---
+title: "README"
+output:
+  html_document:
+    theme: spacelab
+    highlight: tango
+---
+
+This file is part of the very first assignment. You find my project [here](https://github.com/mkkjrv/IODS-project).
