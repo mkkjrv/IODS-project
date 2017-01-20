@@ -6,4 +6,4 @@ output:
     highlight: tango
 ---
 
-This file is part of the very first assignment. You find my project [here](https://github.com/mkkjrv/IODS-project).
+This file is part of the very first assignment of IODS. Check out my [course diary](https://mkkjrv.github.io/IODS-project/).
