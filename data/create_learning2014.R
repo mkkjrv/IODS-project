@@ -1,5 +1,8 @@
 #Mikko Järvi 30.1.2017. This is a R script file for week 2 exercise.
 
+#install.packages("dplyr")
+#library(dplyr)
+
 #reading the learning data from internet
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS3-data.txt", sep = "\t", header = TRUE )
 
@@ -33,3 +36,23 @@ learning2014 <- select(learning2014, one_of(keep_col))
 
 #check the new dataset learning2014
 str(learning2014)
+
+#cleaning
+colnames(learning2014)
+colnames(learning2014)[2] <- "age"
+colnames(learning2014)[3] <- "attitude"
+colnames(learning2014)[7] <- "points"
+colnames(learning2014)
+
+#select rows where points is >0
+learning2014 <- filter(learning2014, points > 0)
+
+#final check
+str(learning2014)
+
+#save the dataset to data folder
+write.table(learning2014, file="learning2014.txt")
+
+#read and check the file
+sometable <- read.table("~/IODS-project/data/learning2014.txt", header = TRUE)
+str(sometable)
