@@ -24,11 +24,9 @@ summary(student2014)
 From 166 survey respondents 56 was men and 110 was females. The mean of age was 25,5 years. Oldes respondet was 55 and youngest 17 years old.
 
 ##Graphical output
-
-```{r setup, include = FALSE}
+```{r setup,  include = FALSE}
 library(ggplot2)
 library(GGally)
-pairs(student2014[-1], col = student2014$gender)
 ```
 
 ```{r}
