@@ -12,7 +12,7 @@ After the data wrangling exercise the new data set is found from the data folder
 student2014 <- read.table("data/learning2014.txt", header = TRUE)
 dim(student2014)
 ```
-The student data includes 7 variables and 166 rows
+The student data includes 7 variables and 166 rows.
 ```{r}
 str(student2014)
 ```
