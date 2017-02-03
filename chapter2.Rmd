@@ -1,7 +1,36 @@
-# Insert chapter 2 title here
+# RStudio Exercise 2: Analysis
 
-*Describe the work you have done this week and summarize your learning.*
+<!--/*Describe the work you have done this week and summarize your learning.*
 
 - Describe your work and results clearly. 
 - Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods
-- Assume the reader has no previous knowledge of your data or the more advanced methods you are using  
+- Assume the reader has no previous knowledge of your data or the more advanced methods you are using  /-->
+
+##Introduction to the data
+After the data wrangling exercise the new data set is found from the data folder. The set is based on data that was collected from course Introduction to Social Statistics, fall 2014 - in Finnish. The survey was conducted  3.12.2014 - 10.1.2015 by Kimmo Vehkalahti.
+```{r}
+student2014 <- read.table("data/learning2014.txt", header = TRUE)
+dim(student2014)
+```
+The student data includes 7 variables and 166 rows
+```{r}
+str(student2014)
+```
+Variables deep, strat and surf are combination variables from the original survey data.
+
+```{r}
+summary(student2014)
+```
+From 166 survey respondents 56 was men and 110 was females. The mean of age was 25,5 years. Oldes respondet was 55 and youngest 17 years old.
+
+##Graphical output
+
+```{r setup, include = FALSE}
+library(ggplot2)
+library(GGally)
+pairs(student2014[-1], col = student2014$gender)
+```
+
+```{r}
+ggpairs(student2014, mapping = aes(col = gender, alpha = 0.1), lower = list(combo = wrap("facethist", bins = 20)))
+```
