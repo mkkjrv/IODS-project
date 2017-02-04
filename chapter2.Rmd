@@ -50,3 +50,4 @@ my_model<- lm(points ~ attitude + stra + surf, data = student2014)
 summary(my_model)
 ```
 
+ 
