@@ -29,6 +29,24 @@ library(ggplot2)
 library(GGally)
 ```
 
-```{r}
+```{r, echo = FALSE}
 ggpairs(student2014, mapping = aes(col = gender, alpha = 0.1), lower = list(combo = wrap("facethist", bins = 20)))
+```  
+
+Variables differ between genders. Distributions are different in age, attitude and surf (surfface). Three highest correlation between variables are:
+
+* points-attitude
+* surf-deep
+* surf-attitude
+
+
+```{r, echo = FALSE}
+qplot(attitude, points, data = student2014, main = "Scatter plot between attitude and points") + geom_smooth(method = "lm")
 ```
+
+##Explanatory variables
+```{r, echo = FALSE}
+my_model<- lm(points ~ attitude + stra + surf, data = student2014)
+summary(my_model)
+```
+
