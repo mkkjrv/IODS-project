@@ -84,7 +84,7 @@ plot(my_model2, which = c(1:2, 5) )
 This plot shows that there is no pattern between residuals. There is a constant variance among errors. One can confirm that the assumption of constant variance of errors is valid.  
 
 **Normal Q_Q**
-Normal QQ -plot shows that the errors of the model are normally distributed.
+Normal QQ-plot shows that the errors of the model are normally distributed.
 
 **Residual vs Leverage**
 Last plot of the graphical model validation shows that the impact of the singel observation is moderate. Model includes some outliers but the leverage of singel observation don't compromise the validation of the model.
