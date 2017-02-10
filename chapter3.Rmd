@@ -42,5 +42,5 @@ g1 <- ggplot(student_alc, aes(x = high_use, y = age, col = sex))
 g1 + geom_boxplot() + ylab("Age by alcohol consumption and sex")
 ```
 
-
+a
 
