@@ -12,13 +12,11 @@ https://archive.ics.uci.edu/ml/datasets/STUDENT+ALCOHOL+CONSUMPTION
 
 Data is rolled into one from Math course and Portuguese language course datasets. After the data wrangling exercise the new data set is found from the data folder.
 ```{r}
-student_alc <- read.table("data/student_alc.txt", header = TRUE)
-dim(student_alc)
+alc <- read.table("data/student_alc.txt", header = TRUE)
+dim(alc)
 ```
 The student data includes 35 variables and 382 rows.
-```{r}
-colnames(student_alc)
-```
+
 * The variables not used for joining the two data have been combined by averaging (including the grade variables)
 * 'alc_use' is the average of 'Dalc' and 'Walc'
 * 'high_use' is TRUE if 'alc_use' is higher than 2 and FALSE otherwise
@@ -36,7 +34,7 @@ First these relationships are observed from tables and graphics
 
 ```{r, echo = FALSE}
 # initialize a plot of high_use and sex
-g1 <- ggplot(student_alc, aes(x = high_use, y = age, col = sex))
+g1 <- ggplot(alc, aes(x = high_use, y = age, col = sex))
 
 # define the plot as a boxplot and draw it
 g1 + geom_boxplot() + ggtitle("Age by alcohol consumption and sex")

@@ -126,18 +126,10 @@ $(document).ready(function () {
 <p>Using Data Mining To Predict Secondary School Student Alcohol Consumption. Fabio Pagnotta, Hossain Mohammad Amran Department of Computer Science,University of Camerino</p>
 <p><a href="https://archive.ics.uci.edu/ml/datasets/STUDENT+ALCOHOL+CONSUMPTION" class="uri">https://archive.ics.uci.edu/ml/datasets/STUDENT+ALCOHOL+CONSUMPTION</a></p>
 <p>Data is rolled into one from Math course and Portuguese language course datasets. After the data wrangling exercise the new data set is found from the data folder.</p>
-<pre class="r"><code>student_alc &lt;- read.table(&quot;data/student_alc.txt&quot;, header = TRUE)
-dim(student_alc)</code></pre>
+<pre class="r"><code>alc &lt;- read.table(&quot;data/student_alc.txt&quot;, header = TRUE)
+dim(alc)</code></pre>
 <pre><code>## [1] 382  35</code></pre>
 <p>The student data includes 35 variables and 382 rows.</p>
-<pre class="r"><code>colnames(student_alc)</code></pre>
-<pre><code>##  [1] &quot;school&quot;     &quot;sex&quot;        &quot;age&quot;        &quot;address&quot;    &quot;famsize&quot;   
-##  [6] &quot;Pstatus&quot;    &quot;Medu&quot;       &quot;Fedu&quot;       &quot;Mjob&quot;       &quot;Fjob&quot;      
-## [11] &quot;reason&quot;     &quot;nursery&quot;    &quot;internet&quot;   &quot;guardian&quot;   &quot;traveltime&quot;
-## [16] &quot;studytime&quot;  &quot;failures&quot;   &quot;schoolsup&quot;  &quot;famsup&quot;     &quot;paid&quot;      
-## [21] &quot;activities&quot; &quot;higher&quot;     &quot;romantic&quot;   &quot;famrel&quot;     &quot;freetime&quot;  
-## [26] &quot;goout&quot;      &quot;Dalc&quot;       &quot;Walc&quot;       &quot;health&quot;     &quot;absences&quot;  
-## [31] &quot;G1&quot;         &quot;G2&quot;         &quot;G3&quot;         &quot;alc_use&quot;    &quot;high_use&quot;</code></pre>
 <ul>
 <li>The variables not used for joining the two data have been combined by averaging (including the grade variables)</li>
 <li>‘alc_use’ is the average of ‘Dalc’ and ‘Walc’</li>
