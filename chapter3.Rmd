@@ -33,10 +33,10 @@ In this analysis I'm going to study the relationship of high/low alcohol consump
 First these relationships are observed from tables and graphics
 
 ```{r, echo = FALSE}
-# initialize a plot of high_use and sex
+#initialize a plot of high_use and sex
 g1 <- ggplot(alc, aes(x = high_use, y = age, col = sex))
 
-# define the plot as a boxplot and draw it
+#define the plot as a boxplot and draw it
 g1 + geom_boxplot() + ggtitle("Age by alcohol consumption and sex")
 ```
 
