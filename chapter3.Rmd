@@ -1,5 +1,8 @@
 # RStudio exercise 3: Logistic regression
-
+```{r setup,  include = FALSE}
+library(ggplot2)
+library(GGally)
+```
 ##Introduction to the data
 Using Data Mining To Predict Secondary School Student Alcohol Consumption. 
 Fabio Pagnotta, Hossain Mohammad Amran 
@@ -7,7 +10,7 @@ Department of Computer Science,University of Camerino
 
 https://archive.ics.uci.edu/ml/datasets/STUDENT+ALCOHOL+CONSUMPTION
 
-Data is rolled into one from Math course and Portuguese language course datsets. After the data wrangling exercise the new data set is found from the data folder.
+Data is rolled into one from Math course and Portuguese language course datasets. After the data wrangling exercise the new data set is found from the data folder.
 ```{r}
 student_alc <- read.table("data/student_alc.txt", header = TRUE)
 dim(student_alc)
@@ -20,6 +23,24 @@ colnames(student_alc)
 * 'alc_use' is the average of 'Dalc' and 'Walc'
 * 'high_use' is TRUE if 'alc_use' is higher than 2 and FALSE otherwise
 
-##High and low alcohol consumption
+##High and low alcohol consumption and other variables
+
+In this analysis I'm going to study the relationship of high/low alcohol consumption and the following variables:
+
+* age
+* studytime
+* freetime
+* absence
+
+First these relationships are observed from tables and graphics
+
+```{r, echo = FALSE}
+# initialize a plot of high_use and sex
+g1 <- ggplot(student_alc, aes(x = high_use, y = age, col = sex))
+
+# define the plot as a boxplot and draw it
+g1 + geom_boxplot() + ylab("Age by alcohol consumption and sex")
+```
+
 
 
