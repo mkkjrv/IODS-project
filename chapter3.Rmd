@@ -20,4 +20,6 @@ colnames(student_alc)
 * 'alc_use' is the average of 'Dalc' and 'Walc'
 * 'high_use' is TRUE if 'alc_use' is higher than 2 and FALSE otherwise
 
+##High and low alcohol consumption
+
 
