@@ -37,8 +37,10 @@ First these relationships are observed from tables and graphics. Hypothesis are 
 **Age**
 
 The age of high consumption of alcohol may differ between sex. The development of charcter differs between young people and this may affect on habbits of alcohol consumption.
-H0:Age don't affect on alcohol consumption
-H1:There is difference in between level of alcohol consumption and age  
+
+*H0:Age don't affect on alcohol consumption*
+
+*H1:There is difference in between level of alcohol consumption and age* 
 
 ```{r}
 #a jitterplot of high_use and sex
@@ -51,7 +53,7 @@ It seems that there is randomnes of sex and age in both alcohol consumption grou
 ```{r}
 #a boxplot of high_use, sex and age
 g1 <- ggplot(alc, aes(x = high_use, y = age, col = sex))
-g1 + geom_boxplot() + ggtitle("Age by alcohol consumption and sex")
+g1 + geom_boxplot() + ggtitle("Age by alcohol consumption and sex") + xlab("High consumption group") + ylab("Age of student")
 ```
 
 Means however show that young male students have lower mean of age in low consumption group and females in high consumption group.
@@ -61,14 +63,16 @@ Means however show that young male students have lower mean of age in low consum
 **Studytime**
 
 High alcohol consumption may be related to time spend in studies because one can't do both at the same time at least not successfully.
-H0:Group of high alcohol consumption affects on wekkly study time (numeric: 1 - <2 hours, 2 - 2 to 5 hours, 3 - 5 to 10 hours, or 4 - >10 hours) 
+
+*H0:Alcohol consumption do not affect on weekly study time* 
+
+*H1:Alcohol consumption affects on weekly study time (numeric: 1 - <2 hours, 2 - 2 to 5 hours, 3 - 5 to 10 hours, or 4 - >10 hours)*
+
 
 ```{r}
 #barplot about studytime
-ggplot(alc, aes(studytime, fill=high_use)) + geom_bar(position="dodge") +
-  ggtitle("Barplot about studytime grouped by high_use")+ xlab("Study time") + ylab("Frequency") +
-  theme(plot.title = element_text(hjust = 0.5,size=16,face='bold'),
-        axis.title= element_text(hjust = 0.5,size=14))
+ggplot(alc, aes(studytime, fill = high_use)) + geom_bar(position = "fill") +
+  ggtitle("Barplot about studytime grouped by high_use")+ xlab("Study time") + ylab("Propotions of students") + scale_y_continuous(name = waiver(), breaks = waiver(), minor_breaks = waiver(), labels = waiver(), limits = NULL, expand = waiver(), na.value = NA_real_, trans = "identity")
 ```
 
-
+It seems that there is less high users in those students groups who spend more time in studying.
