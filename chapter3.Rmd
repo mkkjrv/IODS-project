@@ -2,6 +2,7 @@
 ```{r,  include = FALSE}
 library(ggplot2)
 library(GGally)
+library(dplyr)
 ```
 ##Introduction to the data
 Using Data Mining To Predict Secondary School Student Alcohol Consumption. 
@@ -23,7 +24,8 @@ The student data includes 35 variables and 382 rows.
 
 ##High and low alcohol consumption and other variables
 
-In this analysis I'm going to study the relationship of high/low alcohol consumption and the following variables:
+
+In this analysis I'm going to study the relationship of high/low alcohol consumption between sex and the following variables:
 
 * age
 * studytime
@@ -32,10 +34,41 @@ In this analysis I'm going to study the relationship of high/low alcohol consump
 
 First these relationships are observed from tables and graphics. Hypothesis are as follows:
 
-Age
-H0: 
+**Age**
+
+The age of high consumption of alcohol may differ between sex. The development of charcter differs between young people and this may affect on habbits of alcohol consumption.
+H0:Age don't affect on alcohol consumption
+H1:There is difference in between level of alcohol consumption and age  
+
 ```{r}
-#a boxplot of high_use and sex
+#a jitterplot of high_use and sex
+g1 <- ggplot(alc, aes(x = high_use, y = age, col = sex))
+g1 + geom_jitter() + ggtitle("Age by alcohol consumption and sex")
+```
+
+It seems that there is randomnes of sex and age in both alcohol consumption groups.
+
+```{r}
+#a boxplot of high_use, sex and age
 g1 <- ggplot(alc, aes(x = high_use, y = age, col = sex))
 g1 + geom_boxplot() + ggtitle("Age by alcohol consumption and sex")
 ```
+
+Means however show that young male students have lower mean of age in low consumption group and females in high consumption group.
+
+
+
+**Studytime**
+
+High alcohol consumption may be related to time spend in studies because one can't do both at the same time at least not successfully.
+H0:Group of high alcohol consumption affects on wekkly study time (numeric: 1 - <2 hours, 2 - 2 to 5 hours, 3 - 5 to 10 hours, or 4 - >10 hours) 
+
+```{r}
+#barplot about studytime
+ggplot(alc, aes(studytime, fill=high_use)) + geom_bar(position="dodge") +
+  ggtitle("Barplot about studytime grouped by high_use")+ xlab("Study time") + ylab("Frequency") +
+  theme(plot.title = element_text(hjust = 0.5,size=16,face='bold'),
+        axis.title= element_text(hjust = 0.5,size=14))
+```
+
+
