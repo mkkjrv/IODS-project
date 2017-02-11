@@ -108,3 +108,28 @@ g1 + geom_boxplot() + ggtitle("Absences by alcohol consumption") + xlab("High co
 ```
 
 It seems that the differences between alcohol consumption groups in absences are small. Mean of absences is higher in high consumption group but it may not be significant.
+
+##Logistic regression model
+
+Logistic regression model is a binary classification method. It can be used to identify factors related one of the two groups of alcohol consumption.
+
+```{r}
+#the model with glm()
+m <- glm(high_use ~ age + studytime + freetime + absences, data = alc, family = "binomial")
+summary(m)
+```
+
+From the fitted model one see that all explanatory variables except age are statistically significant with p-value < 0,01.
+
+```{r}
+coef(m)
+```
+
+```{r}
+# compute odds ratios (OR)
+OR <- coef(m) %>% exp
+# compute confidence intervals (CI)
+CI <- confint(m) %>% exp
+# print out the odds ratios with their confidence intervals
+cbind(OR, CI)
+```
