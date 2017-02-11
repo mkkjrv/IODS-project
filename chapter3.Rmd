@@ -30,8 +30,11 @@ In this analysis I'm going to study the relationship of high/low alcohol consump
 * freetime
 * absence
 
-First these relationships are observed from tables and graphics
-```{r, echo = FALSE}
+First these relationships are observed from tables and graphics. Hypothesis are as follows:
+
+Age
+H0: 
+```{r}
 #a boxplot of high_use and sex
 g1 <- ggplot(alc, aes(x = high_use, y = age, col = sex))
 g1 + geom_boxplot() + ggtitle("Age by alcohol consumption and sex")
