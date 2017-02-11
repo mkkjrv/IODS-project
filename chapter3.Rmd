@@ -30,7 +30,7 @@ In this analysis I'm going to study the relationship of high/low alcohol consump
 * age
 * studytime
 * freetime
-* absence
+* absences
 
 First these relationships are observed from tables and graphics. Hypothesis are as follows:
 
@@ -43,7 +43,7 @@ The age of high consumption of alcohol may differ between sex. The development o
 *H1: There is difference in between level of alcohol consumption and age* 
 
 ```{r}
-#a jitterplot of high_use and sex
+#a jitterplot of high_use, sex and age
 g1 <- ggplot(alc, aes(x = high_use, y = age, col = sex))
 g1 + geom_jitter() + ggtitle("Age by alcohol consumption and sex")
 ```
@@ -91,4 +91,20 @@ ggplot(alc, aes(freetime, fill = high_use)) + geom_bar(position = "fill") +
   ggtitle("Barplot about free time grouped by high_use")+ xlab("Free time") + ylab("Propotions of students") + scale_y_continuous(name = waiver(), breaks = waiver(), minor_breaks = waiver(), labels = waiver(), limits = NULL, expand = waiver(), na.value = NA_real_, trans = "identity")
 ```
 
-It seems that there are more students that are consuming alcohol high amounts in those students groups that have more free time than in those who have not as much free time.  
+It seems that there are more students that are consuming alcohol high amounts in those students groups that have more free time than in those who have not as much free time.
+
+**Absences**
+
+High consumption of alcohol may cause absences.
+
+*H0: High consumption of alcohol do not affect on absences*
+
+*H1: High consumption of alcohol does affect on absences*
+
+```{r}
+#a boxplot of high_use and absences
+g1 <- ggplot(alc, aes(x = high_use, y = absences, fill = high_use))
+g1 + geom_boxplot() + ggtitle("Absences by alcohol consumption") + xlab("High consumption group") + ylab("Absences")
+```
+
+It seems that the differences between alcohol consumption groups in absences are small. Mean of absences is higher in high consumption group but it may not be significant.
