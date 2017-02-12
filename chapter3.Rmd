@@ -27,10 +27,12 @@ The student data includes 35 variables and 382 rows.
 
 In this analysis I'm going to study the relationship of high/low alcohol consumption between sex and the following variables:
 
-* age
-* studytime
-* freetime
-* absences
+|Variable|Type|Description|
+|--------|----|-----------|
+|age|numeric|student's age|
+|studytime|numeric, scale 1-4|weekly study time|
+|freentime|numeric, scale 1-5|free time after school|
+|absence|numeric|number of school absences|
 
 First these relationships are observed from tables and graphics. Hypothesis are as follows:
 
@@ -119,7 +121,7 @@ m <- glm(high_use ~ age + studytime + freetime + absences, data = alc, family = 
 summary(m)
 ```
 
-From the fitted model one see that all explanatory variables except age are statistically significant with p-value < 0,01.
+From the fitted model one see that all explanatory variables except age are statistically significant with p-value < 0,01. Variable absence is also statistically sisgnificant with p-value < 0,001. 
 
 ```{r}
 coef(m)
