@@ -1,4 +1,3 @@
-
-# About the project
+# RStudio Exercise 1: Tools and methods
 
 *The name of the course is Introduction to Open Data Science and we are focusing to language R, RStudio, GitHub and Markdown. You can find my Github repository [here](https://github.com/mkkjrv/IODS-project).*
