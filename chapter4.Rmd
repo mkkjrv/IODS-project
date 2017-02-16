@@ -1,0 +1,21 @@
+# RStudio exercise 4: Clustering and classification
+
+```{r, include = FALSE}
+library(MASS)
+data(Boston)
+
+```
+##Introduction to the data
+
+```{r}
+dim(Boston)
+str(Boston)
+summary(Boston)
+pairs(Boston)
+```
+
+In this exercise we use Boston data from MASS-library. This dataset contains information collected by the U.S Census Service concerning housing in the area of Boston Mass. Data includes 14 variables and 506 rows.
+
+
+
+
