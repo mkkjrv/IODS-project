@@ -37,10 +37,28 @@ str(Boston)
 
 ```{r, echo = FALSE}
 #calculating the correlation matrix and correlation plot
-cor_matrix <- cor(Boston) 
+cor_matrix <- round(cor(Boston),digits = 2)
 corrplot(cor_matrix, method="circle", type = "upper", cl.pos = "b", tl.pos = "d", tl.cex = 0.6)
 ```
 
 Plotted correlation matrix shows that there is some high correlation between variables. Some of them are quite clear as *indus* and *nox*. Industrial adds pollution in the area. *Crim* seems to correlate with *rad* and *tax* but connetion is less clear.  
 
+```{r}
+summary(Boston)
+```
 
+##Scaled data##
+All the variables are numerical so we can use scale()-function to scale whole data set.
+
+```{r, echo = FALSE}
+#center and standardize variables
+boston_scaled <- scale(Boston)
+summary(boston_scaled)
+```
+
+```{r}
+# class of the boston_scaled object
+class(boston_scaled)
+
+# change the object to data frame
+boston_scaled <- as.data.frame(boston_scaled)
