@@ -158,7 +158,7 @@ Table shows that the model predict 254 true negatives, 21 true positives, 14 fal
 table("High use" = alc$high_use, "Prediction" = alc$prediction) %>% prop.table() %>% addmargins()
 ```
 
-Propabilities of the same table shows that over 28% are false predictions
+Propabilities of the same table shows that 90,8% is predicted to be false but only 66,5% of them is correct. 9,2% is predicted to be true but 5,5% of them realy are students with high use of alcohol.
 
 ```{r}
 #a plot of 'high_use' versus 'probability' in 'alc'
@@ -178,7 +178,7 @@ loss_func <- function(class, prob) {
 loss_func(class = alc$high_use, prob = alc$probability)
 ```
 
-The average number of wrong predictions is 28% by loss function
+The average number of wrong predictions in trainig data is 28%.
 
 ###Cross validation
 
@@ -193,3 +193,4 @@ cv$delta[1]
 ````
 
 10-fold cross-validation gives good estimate of the actual predictive power of the model. Low value = good. 
+

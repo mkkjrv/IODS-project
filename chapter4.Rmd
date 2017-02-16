@@ -1,21 +1,46 @@
 # RStudio exercise 4: Clustering and classification
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 library(MASS)
-data(Boston)
-
+library(ggplot2)
+library(GGally)
+library(corrplot)
 ```
 ##Introduction to the data
 
-```{r}
-dim(Boston)
-str(Boston)
-summary(Boston)
-pairs(Boston)
-```
-
 In this exercise we use Boston data from MASS-library. This dataset contains information collected by the U.S Census Service concerning housing in the area of Boston Mass. Data includes 14 variables and 506 rows.
 
+```{r, echo = FALSE}
+dim(Boston)
+str(Boston)
+```
 
+|variable|description|
+|--------|-------------------------------------|
+|crim|per capita crime rate by town|
+|zn|proportion of residential land zoned for lots over 25,000 sq.ft.|
+|indus|proportion of non-retail business acres per town|
+|chas|Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)|
+|nox|nitrogen oxides concentration (parts per 10 million)|
+|rm|average number of rooms per dwelling|
+|age|proportion of owner-occupied units built prior to 1940|
+|dis|weighted mean of distances to five Boston employment centres|
+|rad|index of accessibility to radial highways|
+|tax|full-value property-tax rate per $10,000|
+|ptratio|pupil-teacher ratio by town|
+|black|1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town|
+|lstat|lower status of the population (percent)|
+|medv|median value of owner-occupied homes in $1000|
+
+
+###Plotted correlation matrix###
+
+```{r, echo = FALSE}
+#calculating the correlation matrix and correlation plot
+cor_matrix <- cor(Boston) 
+corrplot(cor_matrix, method="circle", type = "upper", cl.pos = "b", tl.pos = "d", tl.cex = 0.6)
+```
+
+Plotted correlation matrix shows that there is some high correlation between variables. Some of them are quite clear as *indus* and *nox*. Industrial adds pollution in the area. *Crim* seems to correlate with *rad* and *tax* but connetion is less clear.  
 
 
