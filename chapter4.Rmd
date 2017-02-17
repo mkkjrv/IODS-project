@@ -1,6 +1,6 @@
 # RStudio exercise 4: Clustering and classification
 
-```{r setup, include = FALSE}
+```{r, include = FALSE}
 library(MASS)
 library(ggplot2)
 library(GGally)
