@@ -50,3 +50,14 @@ glimpse(gii)
 gii <- mutate(gii, labour_ratio = labour_female / labour_male)
 glimpse(gii)
 
+#joining the two datasets (hd and gii) 
+human <- inner_join(gii, hd, by = "country", suffix = c(".gii", ".hd"))
+glimpse(human)
+str(human)
+
+#saving data 
+write.table(human, file="human.txt")
+
+#read and check the file
+sometable <- read.table("~/IODS-project/data/human.txt", header = TRUE)
+str(sometable)
