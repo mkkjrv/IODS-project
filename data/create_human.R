@@ -26,3 +26,18 @@ colnames(hd)[6] <- "edu_mean"
 colnames(hd)[7] <- "gni_capita"
 colnames(hd)[8] <- "gni_rank"
 colnames(hd)
+
+#cleaning gii
+colnames(gii)
+colnames(gii)[1] <- "gii_rank"
+colnames(gii)[2] <- "country"
+colnames(gii)[3] <- "gii_index"
+colnames(gii)[4] <- "mortality"
+colnames(gii)[5] <- "young_mom"
+colnames(gii)[6] <- "women_parlament"
+colnames(gii)[7] <- "edu_female"
+colnames(gii)[8] <- "edu_male"
+colnames(gii)[9] <- "labour_female"
+colnames(gii)[10] <- "labour_male"
+colnames(gii)
+
