@@ -10,10 +10,12 @@ install.packages("plotly")
 hd <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/human_development.csv", stringsAsFactors = F)
 dim(hd)
 summary(hd)
+glimpse(hd)
 
 gii <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/gender_inequality.csv", stringsAsFactors = F, na.strings = "..")
 dim(gii)
 summary(gii)
+glimpse(gii)
 
 #cleaning hd
 colnames(hd)
@@ -40,4 +42,11 @@ colnames(gii)[8] <- "edu_male"
 colnames(gii)[9] <- "labour_female"
 colnames(gii)[10] <- "labour_male"
 colnames(gii)
+
+#adding two new variables to gii
+gii <- mutate(gii, edu_ratio = edu_female / edu_male)
+glimpse(gii)
+
+gii <- mutate(gii, labour_ratio = labour_female / labour_male)
+glimpse(gii)
 
