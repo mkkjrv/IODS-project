@@ -32,33 +32,91 @@ str(Boston)
 |lstat|lower status of the population (percent)|
 |medv|median value of owner-occupied homes in $1000|
 
+##Graphical overview of the data##
+
+###Plot matrix of the data###
+
+```{r, echo = FALSE}
+pairs(Boston, col = 4)
+```
+
+There are some very intresting distributions fo variables in the plot matrix. Variable *rad* has high and low values so the plot shows that the values are consenrated either side of the plot. VAriable *   
 
 ###Plotted correlation matrix###
 
 ```{r, echo = FALSE}
 #calculating the correlation matrix and correlation plot
 cor_matrix <- round(cor(Boston),digits = 2)
+
 corrplot(cor_matrix, method="circle", type = "upper", cl.pos = "b", tl.pos = "d", tl.cex = 0.6)
 ```
 
-Plotted correlation matrix shows that there is some high correlation between variables. Some of them are quite clear as *indus* and *nox*. Industrial adds pollution in the area. *Crim* seems to correlate with *rad* and *tax* but connetion is less clear.  
+Plotted correlation matrix shows that there is some high correlation between variables:
+
+* Correlation is quite clear between industrial areas (*indus*) and nitrogen oxides (*nox*). Industry adds pollution in the area. Industry seems to correlate also with variablrs like *age*, *dis*, *ras* and *tax*.
+
+* Nitrogen oxides (*nox*) correlations are very similar with industry (*indus*)
+
+* Crime rate (*crim*) seems to correlate with good accessibilitty to radial highways (*rad*) and value property (*tax*).
+
+* Old houses (*age*) and employment centers have also something common 
+
+
 
 ```{r}
 summary(Boston)
 ```
 
-##Scaled data##
+###Scaled data###
 All the variables are numerical so we can use scale()-function to scale whole data set.
 
 ```{r, echo = FALSE}
 #center and standardize variables
 boston_scaled <- scale(Boston)
 summary(boston_scaled)
+class(boston_scaled)
+boston_scaled <- as.data.frame(boston_scaled)
 ```
 
-```{r}
-# class of the boston_scaled object
-class(boston_scaled)
+Scaling the data makes variables look as if they are in the same range. Variables like *black* and *tax* were before scaling hundred fold compared to some other variables. 
 
-# change the object to data frame
-boston_scaled <- as.data.frame(boston_scaled)
+###Creating a new categorical variable crime###
+
+Variable *crim* is the base of the new categorial variable *crime*. 
+
+|categories|quantile points|
+|-------|-------|
+|low|0%-25%|
+|med_low|25%-50%|
+|med_high|50%-75%|
+|high|75%-100%|
+
+```{r, echo = FALSE}
+#save the scaled crim as scaled_crim
+scaled_crim <- boston_scaled$crim
+```
+
+Quantile points of the variable *crim*
+
+```{r, echo = FALSE}
+#create a quantile vector of crim and print it
+bins <- quantile(scaled_crim)
+bins
+
+#create a categorical variable 'crime'
+crime <- cut(scaled_crim, breaks = bins, include.lowest = TRUE, label = c("low", "med_low", "med_high", "high"))
+
+#look at the table of the new factor crime, do not change the actual variable "crime"
+crime_tab <-table(crime)
+crime_tab
+
+#remove original crim from the dataset
+boston_scaled <- dplyr::select(boston_scaled, -crim)
+
+# add the new categorical value to scaled data
+boston_scaled <- data.frame(boston_scaled, crime)
+summary(boston_scaled)
+```
+
+
+
