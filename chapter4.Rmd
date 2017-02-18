@@ -82,7 +82,7 @@ Scaling the data makes variables look as if they are in the same range. Variable
 
 ##Creating a new categorical variable crime##
 
-Variable *crim* is the base of the new categorial variable *crime*. 
+Variable *crim* is the base of the new categorical variable *crime*. 
 
 |categories|quantile points|
 |-------|-------|
@@ -180,3 +180,5 @@ table(correct = correct_classes, predicted = lda.pred$class)
 ```
 
 Prediction were quite good. There was some errors in the middle of the range but classes low and especially high were good. Only one correct representative of high class was predicted to med_low class. 
+
+
