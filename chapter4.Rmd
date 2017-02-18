@@ -187,4 +187,30 @@ table(correct = correct_classes, predicted = lda.pred$class)
 
 Prediction were quite good. There was some errors in the middle of the range but classes low and especially high were good. Only one correct representative of high class was predicted to med_low class. 
 
+##K-means algorithm##
+
+I'm going to calculate what is the optimal number of clusters for Boston data. First I reload and scale the data. Variables need to be scaled to get comparable distances between observation. 
+```{r, echo = FALSE}
+#Loading and scaling Boston data
+scaled_Boston <- scale(Boston)
+summary(scaled_Boston)
+```
+
+Next I calculate the distances between observations and determinen the number of clusters.
+```{r, echo = FALSE}
+#calculating the euclidean distance matrix between the observation
+dist_eu <- dist(scaled_Boston)
+
+#determining the max number of clusters
+cluster_max <- 15
+
+# calculate the total within sum of squares
+twcss <- sapply(1:cluster_max, function(k){kmeans(dist_eu, k)$tot.withinss})
+
+# visualize the results
+plot(1:cluster_max, twcss, type='b')
+```
+
+One way to determine the number of clusters is to look how the total of within cluster sum of squares (WCSS) behaves when the number of clusters changes. WCSS was calculated from 1 to 15 clusters. The optimal number of clusters is when the total WCSS drops radically. It seems that in this case optimal number of clusters is two. However we are here to learn so I decided to analyse model with four clusters. 
+
 
