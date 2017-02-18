@@ -120,6 +120,8 @@ summary(boston_scaled)
 
 ##Train and test sets##
 
+Training set contains 80% of the data. 20% is in the test set.
+
 ```{r, echo = FALSE}
 # number of rows in the Boston dataset 
 n <- nrow(boston_scaled)
@@ -135,6 +137,11 @@ test <- boston_scaled[-ind,]
 ```
 
 ##Fitting the Linear Discriminant Analysis##
+
+First the linear discriminant analysis (LDA) is fitted to the train set. The new categorical variable *crime* is the target variable and all the other variables of the dataset are predictor variables.
+
+After fitting we draw the LDA biplot with arrows.
+
 ```{r, echo = FALSE}
 #LDA = linear discriminant analysis
 lda.fit <- lda(crime ~. , data = train)
@@ -161,7 +168,6 @@ plot(lda.fit, dimen = 2, col = classes, pch = classes)
 lda.arrows(lda.fit, myscale = 3)
 
 ```
-
 
 ##Predicting the classes##
 
