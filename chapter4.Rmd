@@ -204,7 +204,11 @@ dist_eu <- dist(scaled_Boston)
 #determining the max number of clusters
 cluster_max <- 15
 
-# calculate the total within sum of squares
+#calculate the total within sum of squares
+#K-means might produce different results every time, because it randomly 
+#assigns the initial cluster centers. The function set.seed() can be used to 
+#deal with that.
+set.seed(123)
 twcss <- sapply(1:cluster_max, function(k){kmeans(dist_eu, k)$tot.withinss})
 
 # visualize the results
@@ -213,4 +217,13 @@ plot(1:cluster_max, twcss, type='b')
 
 One way to determine the number of clusters is to look how the total of within cluster sum of squares (WCSS) behaves when the number of clusters changes. WCSS was calculated from 1 to 15 clusters. The optimal number of clusters is when the total WCSS drops radically. It seems that in this case optimal number of clusters is two. However we are here to learn so I decided to analyse model with four clusters. 
 
+After determining the number of clusters I run the K-means alcorithm again.
+```{r, echo = FALSE}
+#k-means clustering
+km <-kmeans(dist_eu, centers = 4)
 
+# plot the Boston dataset with clusters
+pairs(Boston, col = km$cluster)
+```
+
+It seems that when the data is divided to four clusters there is some clear differences in distriputions of several variables. *Crim*, *zn*, *indus* and *blacks* are variables were one can distinguish clear patterns between clusters. Some variables (*rad* & *tax*) show that sometimes 1 or 2 clusters make a clear distripution but observation of other two clusters are ambigious and there is no clear pattern to be regognised.
