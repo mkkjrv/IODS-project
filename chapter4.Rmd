@@ -227,3 +227,60 @@ pairs(Boston, col = km$cluster)
 ```
 
 It seems that when the data is divided to four clusters there is some clear differences in distriputions of several variables. *Crim*, *zn*, *indus* and *blacks* are variables were one can distinguish clear patterns between clusters. Some variables (*rad* & *tax*) show that sometimes 1 or 2 clusters make a clear distripution but observation of other two clusters are ambigious and there is no clear pattern to be regognised.
+
+##BONUS: LDA using clusters as target classes##
+
+After loading the Boston dataset I scale it to get comparable distances. 
+```{r, echo = FALSE}
+#Loading and scaling Boston data
+scaled_Boston <- scale(Boston)
+scaled_Boston <- as.data.frame(scaled_Boston)
+#colnames(scaled_Boston)
+
+#calculating the euclidean distance matrix between the observation
+dist_eu <- dist(scaled_Boston)
+
+#k-means clustering
+set.seed(123)
+km <-kmeans(dist_eu, centers = 4)
+cm <- as.data.frame(km$cluster)
+
+#adding the clusters to the scaled dataset
+scaled_Boston <- data.frame(scaled_Boston, clust = cm)
+colnames(scaled_Boston)[15] <- "clust"
+
+summary(scaled_Boston)
+```
+
+Original Boston dataset is now scaled and the result of K-means clustering is saved to the variable *clust*
+
+###LDA with the clusters###
+
+Next the LDA is performed and the biplot with arrows is created
+```{r, echo = FALSE}
+#LDA = linear discriminant analysis
+lda.fit <- lda(clust ~. , data = scaled_Boston)
+
+#print the lda.fit object
+lda.fit
+
+#the function for lda biplot arrows
+lda.arrows <- function(x, myscale = 1, arrow_heads = 0.1, color = "red", tex = 0.75, choices = c(1,2)){
+  heads <- coef(x)
+  arrows(x0 = 0, y0 = 0, 
+         x1 = myscale * heads[,choices[1]], 
+         y1 = myscale * heads[,choices[2]], col=color, length = arrow_heads)
+  text(myscale * heads[,choices], labels = row.names(heads), 
+       cex = tex, col=color, pos=3)
+}
+
+#target classes as numeric
+classes <- as.numeric(scaled_Boston$clust)
+#classes
+
+#plot the lda results
+plot(lda.fit, dimen = 2, col = classes, pch = classes)
+lda.arrows(lda.fit, myscale = 3)
+```
+
+Biplot shows that variables *indus*, *zn* and *medv* are the most influencial separators for the clusters.
