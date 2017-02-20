@@ -1,10 +1,13 @@
 # RStudio exercise 4: Clustering and classification
 
 ```{r, include = FALSE}
+#install.packages("plotly")
 library(MASS)
 library(ggplot2)
 library(GGally)
 library(corrplot)
+library(dplyr)
+library(plotly)
 ```
 ##Introduction to the data
 
@@ -259,10 +262,10 @@ Original Boston dataset is now scaled and the result of K-means clustering is sa
 Next the LDA is performed and the biplot with arrows is created
 ```{r, echo = FALSE}
 #LDA = linear discriminant analysis
-lda.fit <- lda(clust ~. , data = scaled_Boston)
+lda.fit.km <- lda(clust ~. , data = scaled_Boston)
 
 #print the lda.fit object
-lda.fit
+lda.fit.km
 
 #the function for lda biplot arrows
 lda.arrows <- function(x, myscale = 1, arrow_heads = 0.1, color = "red", tex = 0.75, choices = c(1,2)){
@@ -279,8 +282,45 @@ classes <- as.numeric(scaled_Boston$clust)
 #classes
 
 #plot the lda results
-plot(lda.fit, dimen = 2, col = classes, pch = classes)
-lda.arrows(lda.fit, myscale = 3)
+plot(lda.fit.km, dimen = 2, col = classes, pch = classes)
+lda.arrows(lda.fit.km, myscale = 3)
 ```
 
 Biplot shows that variables *indus*, *zn* and *medv* are the most influencial separators for the clusters.
+
+##Super-bonus##
+
+###3D plot where observations color is the crime classes of the train set###
+```{r, echo = FALSE}
+model_predictors <- dplyr::select(train, -crime)
+
+#check the dimensions
+#dim(model_predictors)
+#dim(lda.fit$scaling)
+
+#matrix multiplication
+matrix_product <- as.matrix(model_predictors) %*% lda.fit$scaling
+matrix_product <- as.data.frame(matrix_product)
+
+#3d plot
+plot_ly(x = matrix_product$LD1, y = matrix_product$LD2, z = matrix_product$LD3, type= 'scatter3d', mode='markers', color = train$crime)
+```
+
+###3D plot where observations color is based on the K-means clusters.###
+```{r, echo = FALSE}
+model_predictors <- dplyr::select(scaled_Boston, -clust)
+
+#check the dimensions
+#dim(model_predictors)
+#dim(lda.fit.km$scaling)
+
+#matrix multiplication
+matrix_product <- as.matrix(model_predictors) %*% lda.fit.km$scaling
+matrix_product <- as.data.frame(matrix_product)
+
+#3D plot
+plot_ly(x = matrix_product$LD1, y = matrix_product$LD2, z = matrix_product$LD3, type= 'scatter3d', mode='markers', color = scaled_Boston$clust)
+```
+
+
+Colors of the both plots is based to four classes. It seems that K-means plot shows the different clusters more clearly than the plot that is based on the crime classification. 
