@@ -123,6 +123,64 @@ $(document).ready(function () {
 <h1>RStudio exercise 5: Dimensionality reduction techniques</h1>
 <div id="introduction-to-the-data" class="section level2">
 <h2>Introduction to the data</h2>
+<p>The data of this exercise originates from the United Nations Development Programme. Human development index (HDI) was created to emphasize that people and their capabilities should be the ultimate criteria for assessing the development of a country, not economic growth alone.</p>
+<p>Original data can be found from: <a href="http://hdr.undp.org/en/content/human-development-index-hdi" class="uri">http://hdr.undp.org/en/content/human-development-index-hdi</a></p>
+<p>Modified dataset includes variables as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>variable</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>country</td>
+<td>Country name (name of the row)</td>
+</tr>
+<tr class="even">
+<td>gni_capita</td>
+<td>Gross national income per capita</td>
+</tr>
+<tr class="odd">
+<td>life_exp</td>
+<td>Life expectancy at birth</td>
+</tr>
+<tr class="even">
+<td>edu_years</td>
+<td>Expected years of schooling</td>
+</tr>
+<tr class="odd">
+<td>mortality</td>
+<td>Maternal mortality ratio</td>
+</tr>
+<tr class="even">
+<td>young_mom</td>
+<td>Adolescent birth rate</td>
+</tr>
+<tr class="odd">
+<td>women_parlament</td>
+<td>Percentange of female representatives in parliament</td>
+</tr>
+<tr class="even">
+<td>edu_ratio</td>
+<td>Ratio between females and males at least secondary education</td>
+</tr>
+<tr class="odd">
+<td>labour_ratio</td>
+<td>Ratio between females and males in the labour force</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## 'data.frame':    155 obs. of  8 variables:
+##  $ gni_capita     : int  64992 42261 56431 44025 45435 43919 39568 52947 42155 32689 ...
+##  $ life_exp       : num  81.6 82.4 83 80.2 81.6 80.9 80.9 79.1 82 81.8 ...
+##  $ edu_years      : num  17.5 20.2 15.8 18.7 17.9 16.5 18.6 16.5 15.9 19.2 ...
+##  $ mortality      : int  4 6 6 5 6 7 9 28 11 8 ...
+##  $ young_mom      : num  7.8 12.1 1.9 5.1 6.2 3.8 8.2 31 14.5 25.3 ...
+##  $ women_parlament: num  39.6 30.5 28.5 38 36.9 36.9 19.9 19.4 28.2 31.4 ...
+##  $ edu_ratio      : num  1.007 0.997 0.983 0.989 0.969 ...
+##  $ labour_ratio   : num  0.891 0.819 0.825 0.884 0.829 ...</code></pre>
 </div>
 </div>
 

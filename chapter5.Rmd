@@ -6,3 +6,25 @@
 
 ##Introduction to the data
 
+The data of this exercise originates from the United Nations Development Programme. Human development index (HDI) was created to emphasize that people and their capabilities should be the ultimate criteria for assessing the development of a country, not economic growth alone.
+
+Original data can be found from: http://hdr.undp.org/en/content/human-development-index-hdi
+
+Modified dataset includes variables as follows:
+
+|variable|description|
+|----------|-----------|
+|country|Country name (name of the row)|
+|gni_capita|Gross national income per capita|
+|life_exp|Life expectancy at birth|
+|edu_years|Expected years of schooling|
+|mortality|Maternal mortality ratio|
+|young_mom|Adolescent birth rate|
+|women_parlament|Percentange of female representatives in parliament|
+|edu_ratio|Ratio between females and males at least secondary education| 
+|labour_ratio|Ratio between females and males in the labour force|
+
+```{r, echo = FALSE}
+human <- read.table("data/human.txt", header = TRUE)
+str(human)
+```
