@@ -1,7 +1,12 @@
 # RStudio exercise 5: Dimensionality reduction techniques
 
 ```{r}
-
+library(MASS)
+library(ggplot2)
+library(GGally)
+library(corrplot)
+library(dplyr)
+library(plotly)
 ```
 
 ##Introduction to the data
@@ -10,7 +15,7 @@ The data of this exercise originates from the United Nations Development Program
 
 Original data can be found from: http://hdr.undp.org/en/content/human-development-index-hdi
 
-Modified dataset includes variables as follows:
+Modified dataset includes 9 variables and 155 observations as follows:
 
 |variable|description|
 |----------|-----------|
@@ -24,7 +29,25 @@ Modified dataset includes variables as follows:
 |edu_ratio|Ratio between females and males at least secondary education| 
 |labour_ratio|Ratio between females and males in the labour force|
 
+
+###Summary of the data###
 ```{r, echo = FALSE}
 human <- read.table("data/human.txt", header = TRUE)
 str(human)
 ```
+
+All the variables are either numerical or integers. Two of the variables are ratios (*edu_ratio*, *labour_ratio*).
+
+###Summary, distributions of the variables and the relationships between them###
+```{r, echo = FALSE}
+summary(human)
+```
+
+There is greate variation between numeric variables. Variable like Gross national income per capita (*gni_capita*) differs between 581$ (min) -123,124$ (max) and at the same time there is two variables (*edu_ratio*, *labour_ratio*) that are ratios and differs both sides of number 1. Life expectancy (*life_exp*) and  expected years of schooling (*edu_years*) are in years and the max observation is under 100 years. The percentange of female representatives in parliament (*women_parlament*) is the only variable that is represented in percentange.
+
+
+```{r, echo = FALSE}
+ggpairs(human, mapping = aes(alpha = 0.1), lower = list(combo = wrap("facethist", bins = 20)))
+``` 
+
+
