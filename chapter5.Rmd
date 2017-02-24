@@ -1,0 +1,8 @@
+# RStudio exercise 5: Dimensionality reduction techniques
+
+```{r}
+
+```
+
+##Introduction to the data
+
