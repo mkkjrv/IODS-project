@@ -1,8 +1,10 @@
 #Mikko Järvi 17.2.2017. This is a R script file for week 5 exercise.
 
+#packages and libraries
 #install.packages("dplyr")
-install.packages("plotly")
+#install.packages("plotly")
 #library(dplyr)
+#library(stringr)
 
 #reading the data from internet
 #http://hdr.undp.org/en/content/human-development-index-hdi
@@ -58,6 +60,40 @@ str(human)
 #saving data 
 write.table(human, file="human.txt")
 
-#read and check the file
-sometable <- read.table("~/IODS-project/data/human.txt", header = TRUE)
-str(sometable)
+#reading and checking the file, end of the RStudio exercise 4 
+human <- read.table("~/IODS-project/data/human.txt", header = TRUE)
+#str(sometable)
+
+
+#changing the GNI variable to numeric 
+str(human)
+human <- mutate(human, gni_capita = str_replace(human$gni_capita, pattern=",", replace ="") %>% as.numeric())
+str(human)
+
+#removing unneeded variables
+keep <- c("country", "gni_capita", "life_exp", "edu_years", "mortality", "young_mom", "women_parlament", "edu_ratio", "labour_ratio")
+human <- dplyr::select(human, one_of(keep))
+
+
+#removing all the rows with missing values
+complete.cases(human)
+data.frame(human[-1], comp = complete.cases(human))
+human <- filter(human, complete.cases(human))
+str(human)
+
+#removing rows which relate to regions
+human$country
+last <- nrow(human) - 7
+human <- human[1:last, ]
+str(human)
+
+#row names
+rownames(human) <- human$country
+human <- dplyr::select(human, -country)
+
+#check working directory and save the human.txt to the data folder
+getwd()
+write.table(human, file="human.txt")
+
+#sometable <- read.table("~/IODS-project/data/human.txt", header = TRUE)
+#str(sometable)
