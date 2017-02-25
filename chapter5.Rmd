@@ -65,3 +65,34 @@ human_pca <- prcomp(human)
 human_pca
 ```
 
+```{r, echo = FALSE}
+summary(human_pca)
+```
+
+```{r, echo = FALSE}
+biplot(human_pca, choices = 1:2, cex = c(0.8, 1), col = c("gray40" , "deeppink2"))
+```
+
+The plot don't look good. A large variance of the gross income per capita variable makes it too important for the principal component analysis. The data need to be standardized.
+
+###Summary of the standardized variables###
+```{r, echo = FALSE}
+sc_human <- scale(human)
+summary(sc_human)
+```
+
+###PCA with standardized data###
+```{r, echo = FALSE}
+sc_human_pca <- prcomp(sc_human)
+sc_human_pca
+```
+
+```{r, echo = FALSE}
+summary(sc_human_pca)
+```
+
+```{r, echo = FALSE}
+biplot(sc_human_pca, choices = 1:2, cex = c(0.8, 1), col = c("gray40" , "deeppink2"))
+```
+
+
