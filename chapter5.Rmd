@@ -47,7 +47,7 @@ There is greate variation between numeric variables. Variable like Gross nationa
 
 
 ```{r, echo = FALSE}
-ggpairs(human, mapping = aes(col = "blue", alpha = 0.1), lower = list(combo = wrap("facethist", bins = 20)))
+ggpairs(human, mapping = aes(col = "blue", alpha = 0.1), lower = list(combo = wrap("facethist", bins = 100)))
 ``` 
 
 Maternal mortality (*mortality*) ratio correlates  strongly (negatively) with life expectancy, excpected years of schooling and education ratio between females and males. Maternal mortality and adolescent birth rates appears to be connected too. One could make conclusion that in some countries uneducated females give birth at very young age and that leeds to high maternal mortality rate.
@@ -60,6 +60,7 @@ Women in parliament seems to correlate with education rate between females and m
 
 First we conduct PCA with unstandardized data
 
+###PCA with unstandardized data###
 ```{r, echo = FALSE}
 human_pca <- prcomp(human)
 human_pca
@@ -69,11 +70,11 @@ human_pca
 summary(human_pca)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE}
 biplot(human_pca, choices = 1:2, cex = c(0.8, 1), col = c("gray40" , "deeppink2"))
 ```
 
-The plot don't look good. A large variance of the gross income per capita variable makes it too important for the principal component analysis. The data need to be standardized.
+The plot doesn't look good. A large variance of the gross income per capita variable makes it too important for the principal component analysis. The data need to be standardized.
 
 ###Summary of the standardized variables###
 ```{r, echo = FALSE}
@@ -95,4 +96,5 @@ summary(sc_human_pca)
 biplot(sc_human_pca, choices = 1:2, cex = c(0.8, 1), col = c("gray40" , "deeppink2"))
 ```
 
+Biplots of the unstandardized and standardized data differ in many ways. Large variance of the *
 
