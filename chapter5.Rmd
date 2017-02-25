@@ -47,7 +47,21 @@ There is greate variation between numeric variables. Variable like Gross nationa
 
 
 ```{r, echo = FALSE}
-ggpairs(human, mapping = aes(alpha = 0.1), lower = list(combo = wrap("facethist", bins = 20)))
+ggpairs(human, mapping = aes(col = "blue", alpha = 0.1), lower = list(combo = wrap("facethist", bins = 20)))
 ``` 
 
+Maternal mortality (*mortality*) ratio correlates  strongly (negatively) with life expectancy, excpected years of schooling and education ratio between females and males. Maternal mortality and adolescent birth rates appears to be connected too. One could make conclusion that in some countries uneducated females give birth at very young age and that leeds to high maternal mortality rate.
+
+Gross income per capita appears to be connected to life expectancy and expected years in schooling. Is it so that educated labour force helps society to prosper in economic sense.
+
+Women in parliament seems to correlate with education rate between females and males. It seems that the gender equality starts from education and enables both genders to participate in social desicion-making.
+
+##Principal component analysis (PCA)##
+
+First we conduct PCA with unstandardized data
+
+```{r, echo = FALSE}
+human_pca <- prcomp(human)
+human_pca
+```
 
