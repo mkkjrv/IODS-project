@@ -96,5 +96,7 @@ summary(sc_human_pca)
 biplot(sc_human_pca, choices = 1:2, cex = c(0.8, 1), col = c("gray40" , "deeppink2"))
 ```
 
-Biplots of the unstandardized and standardized data differ in many ways. Large variance of the *
+Biplots of the unstandardized and standardized data differ in many ways. Large variance of the *gni_capita* variable in unstandardized human data distorts the analysis and biplot. The importance of first component before standardation is almost ~100 %. When the data is scaled propely the impact of each variable is reasonable. Importance of the first component after standartation is ~54%.Also the biplot looks better when the mean of the observations is in the middle of the plot.
+
+
 
