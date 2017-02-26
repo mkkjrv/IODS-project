@@ -134,4 +134,4 @@ plot(mca, invisible=c("ind"), habillage = "quali")
 
 It seems that females experience tea as a drink that correlates with spirituality, sophistication and healthy. They seem to drink it with friends and they are using lemon more than males.
 
-Males don't drink their tea at work. They don't think it's healhty and they tend to drink it alone or at least not with friends. Males use milk more than females with tea.
+Males don't drink their tea at work. They don't think it's healthy and they tend to drink it alone or at least not with friends. Males use milk more than females with tea.

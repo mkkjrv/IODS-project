@@ -1,4 +1,4 @@
-# RStudio exercise 4: Clustering and classification
+#RStudio exercise 4: Clustering and classification#
 
 ```{r, include = FALSE}
 #install.packages("plotly")
@@ -9,7 +9,7 @@ library(corrplot)
 library(dplyr)
 library(plotly)
 ```
-##Introduction to the data
+##Introduction to the data##
 
 In this exercise we use Boston data from MASS-library. This dataset contains information collected by the U.S Census Service concerning housing in the area of Boston Mass. Data includes 14 variables and 506 rows.
 
