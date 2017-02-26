@@ -1,15 +1,17 @@
-# RStudio exercise 5: Dimensionality reduction techniques
+#RStudio exercise 5: Dimensionality reduction techniques#
 
-```{r}
+```{r, echo = FALSE, warning = FALSE}
+library(FactoMineR)
 library(MASS)
 library(ggplot2)
 library(GGally)
 library(corrplot)
 library(dplyr)
 library(plotly)
+library(tidyr)
 ```
 
-##Introduction to the data
+##Introduction to the data##
 
 The data of this exercise originates from the United Nations Development Programme. Human development index (HDI) was created to emphasize that people and their capabilities should be the ultimate criteria for assessing the development of a country, not economic growth alone.
 
@@ -47,7 +49,7 @@ There is greate variation between numeric variables. Variable like Gross nationa
 
 
 ```{r, echo = FALSE}
-ggpairs(human, mapping = aes(col = "blue", alpha = 0.1), lower = list(combo = wrap("facethist", bins = 100)))
+ggpairs(human, mapping = aes(col = "blue", alpha = 0.3), lower = list(combo = wrap("facethist", bins = 20)))
 ``` 
 
 Maternal mortality (*mortality*) ratio correlates  strongly (negatively) with life expectancy, excpected years of schooling and education ratio between females and males. Maternal mortality and adolescent birth rates appears to be connected too. One could make conclusion that in some countries uneducated females give birth at very young age and that leeds to high maternal mortality rate.
@@ -98,7 +100,38 @@ biplot(sc_human_pca, choices = 1:2, cex = c(0.8, 1), col = c("gray40" , "deeppin
 
 Biplots of the unstandardized and standardized data differ in many ways. Large variance of the *gni_capita* variable in unstandardized human data distorts the analysis and biplot. The importance of first component before standardation is almost ~100 %. When the data is scaled propely the impact of each variable is reasonable. Importance of the first component after standartation is ~54%.Also the biplot looks better when the mean of the observations is in the middle of the plot.
 
-Biplot of the sta
+###Dimensions of the principal components###
 
+Variables *mortality* and *young_mom* are positively correlated to the first principal component (PC1). *Gni_capita*, *life_exp*, *edu_years* and *edu_ratio* also correlate but the correlation is negative. In the biplot arrows of the negatively correlating dimensions are against PC1 axis. Variables *women_parlament* and *labour_ratio* are not significant for PC1. Starndard deviations of standardized variables are similar. First principal component explains variance by ~53,6%.
 
+Second principal component explains variance by ~16,2% and important variables are *women_parlament* and *labour_ratio*. Those variables correlate negatively to PC2.
 
+##Multiple correspondece analysisi (MCA)##
+
+In this analysis we are using dataset *tea* from the FactoMineR package.
+```{r, echo = FALSE, warning = FALSE}
+data(tea)
+dim(tea)
+str(tea)
+```
+
+The tea dataset includes 300 observation and 36 variables. For the analysis we are using only certain columnns of the data.
+
+```{r, echo = FALSE, warning = FALSE}
+keep_col <- c("home", "work", "friends", "How", "sex", "healthy", "exciting", "relaxing", "sophisticated", "spirituality")
+tea_attitude <- dplyr::select(tea, one_of(keep_col))
+summary(tea_attitude)
+str(tea_attitude)
+gather(tea_attitude) %>% ggplot(aes(value)) + facet_wrap("key", scales = "free") + geom_bar() + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
+```
+
+Next we perform a multiple correspondece analysis for these eight (8) variables and visualize it.
+```{r, echo 0 FALSE}
+mca <- MCA(tea_attitude, graph = FALSE)
+summary(mca)
+plot(mca, invisible=c("ind"), habillage = "quali")
+```
+
+It seems that females experience tea as a drink that correlates with spirituality, sophistication and healthy. They seem to drink it with friends and they are using lemon more than males.
+
+Males don't drink their tea at work. They don't think it's healhty and they tend to drink it alone or at least not with friends. Males use milk more than females with tea.
