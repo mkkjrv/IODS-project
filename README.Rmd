@@ -7,3 +7,35 @@ output:
 ---
 
 This file is part of the very first assignment of IODS. Check out my [course diary](https://mkkjrv.github.io/IODS-project/).
+
+The statistical methods of this course are:
+
+
+**Regression and model validation**
+
+*Simple regression*
+
+*Multiple regression*
+
+*Regression diagnostics*
+
+
+**Logistic regression**
+
+*Logistic regression*
+
+*Cross validation: Training set and test set*
+
+
+**Clustering and classification**
+
+*K-means clustering (KMC)*
+
+*Discriminant analysis (DA)*
+
+
+**Dimensionality reduction techniques**
+
+*Principal component analysis (PCA)*
+
+*Correspondence analysis (CA, MCA)*
